@@ -31,12 +31,6 @@ def scanD(D, Ck, minSupport):
         supportData[key] = support
     return retList, supportData
 
-dataSet = loadDataSet()
-C1 = createC1(dataSet)
-D = list(map(set,dataSet))
-
-L1,suppDat0 = scanD(D,C1,0.5)
-
 def aprioriGen(Lk, k): #creates Ck
     retList = []
     lenLk = len(Lk)
@@ -92,5 +86,23 @@ def generateRules(L, supportData, minConf=0.7):  #supportData is a dict coming f
     return bigRuleList
 
 
-L,suppData = apriori(dataSet)
-aprioriGen(L[0],2)
+# Currently a hard-coded dataset
+dataSet = loadDataSet()
+# Get set of items which appear in dataSet
+C1 = createC1(dataSet)
+# dataSet, with tuples transforemd to be sets
+D = list(map(set,dataSet))
+
+# L1 is the set of items which appear with sufficient freq
+# suppData shows the rel freq of each item (as a dict)
+# This is seed data for the apriori algorithm
+L1,suppData1 = scanD(D,C1,0.5)
+
+# Run the apriori algorithm: L contains item sets, suppData shows rel freq in dict
+# Will continue running with larger and larger sets until none has sufficient rel freq
+L,suppData = apriori(dataSet, minSupport = 0.5)
+
+# Find associations between elements in L[0] with max tuple length 2
+#print(aprioriGen(L[0],2))
+
+rules = generateRules(L, suppData, minConf=0.7)
