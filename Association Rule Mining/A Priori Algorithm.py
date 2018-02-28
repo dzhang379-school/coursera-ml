@@ -1,7 +1,8 @@
 from numpy import *
+import random
 
 def loadDataSet():
-    return [[1, 3, 4], [2, 3, 5], [1, 2, 3, 5], [2, 5]]
+    return [[random.randrange(5, 10),random.randrange(5, 10), random.randrange(5, 8)] for x in range(20)]
 
 def createC1(dataSet):
     C1 = []
@@ -102,7 +103,7 @@ L1,suppData1 = scanD(D,C1,0.5)
 # Will continue running with larger and larger sets until none has sufficient rel freq
 L,suppData = apriori(dataSet, minSupport = 0.5)
 
-# Find associations between elements in L[0] with max tuple length 2
-#print(aprioriGen(L[0],2))
-
-rules = generateRules(L, suppData, minConf=0.7)
+# Find associations between elements in L[0] with max length alue '2'
+print(aprioriGen(L[0],2))
+k = generateRules(L, suppData, minConf = 0.5)
+#print(k)
