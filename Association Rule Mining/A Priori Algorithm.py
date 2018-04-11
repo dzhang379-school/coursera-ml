@@ -11,8 +11,7 @@ def createC1(dataSet):
                 C1.append([item])
 
     C1.sort()
-    return list(map(frozenset, C1))  # use frozen set so we
-    # can use it as a key in a dict
+    return list(map(frozenset, C1))  # use frozen set so we can use it as a key in a dict
 
 def scanD(D, Ck, minSupport):
     ssCnt = {}
