@@ -30,4 +30,4 @@ if __name__ == "__main__":
     for name in ['Happiness Score', 'GDP Per Capita', 'Life Expectancy', 'Freedom', 'Gov Trust', 'Generosity']:
         print("{}\n".format(df[name].value_counts().sort_values()))
 
-    df.to_csv('World_Happiness_Discrete', sep=',')
+    df.to_csv('World_Happiness_Discrete.csv', sep=',')
